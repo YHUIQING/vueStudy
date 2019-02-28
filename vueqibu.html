@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<span>1111</span>
+		<div id="app">
+			{{message}}
+		</div>
+		<div id="app-2">
+			<span v-bind:title='message1'>
+				鼠标悬停几秒钟查看此处动态绑定信息!
+			</span>
+		</div>
+		<div id="app-3">
+			<p v-if='seen'>
+				现在你看到我了
+			</p>
+		</div>
+		<ul id="app-4">
+			<li v-for = 'todo in todos'>
+				{{todo.text}}
+			</li>
+		</ul>
+		<div id="app-5">
+			<p> {{message}}</p>
+			<button v-on:click="reverseMessage">逆转消息</button>
+		</div>
+		<div id="app-6">
+			<p>{{message}}</p>
+			<input v-model = 'message' />
+		</div>
+		<div id="app-7">
+			<ol>
+				<todo-item
+				v-for = "item in groceryList"
+				v-bind:todo = 'item'
+				v-bind:key = 'item.id'>
+				</todo-item>
+			</ol>
+		</div>
+	</body>
+	
+	<!-- 生产环境版本，优化了尺寸和速度 -->
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script>
+		Vue.component('todo-item',{
+			props:['todo'],
+			template:'<li>{{todo.id}}</li>'
+		})
+		var app7 = new Vue({
+			el:"#app-7",
+			data:{
+				groceryList:[
+					{id:22,text:'蔬菜0'},
+					{id:11,text:'蔬菜1'},
+					{id:44,text:'蔬菜2'},
+					{id:33,text:'蔬菜3'},
+				]
+			}
+		})
+		var app6 = new Vue({
+			el:'#app-6',
+			data:{
+				message:'hello vue.js',
+			}
+		})
+			var app5 = new Vue({
+				el:'#app-5',
+				data:{
+					message:"Hello Vue.js!"
+				},
+				methods:{
+					reverseMessage:function(){
+						this.message = this.message.split('').reverse().join('')
+					}
+				}
+			})
+			var app = new Vue({
+				el:"#app",
+				data:{
+					message:'Hello Vue!'
+				}
+			})
+			var app2 = new Vue({
+				el:'#app-2',
+				data:{
+					message1:'页面加载于'+new Date().toLocaleString()
+				}
+			})
+			var app3 = new Vue({
+				el:'#app-3',
+				data:{
+					seen:1,
+				}
+			})
+			var app4 = new Vue({
+				el:'#app-4',
+				data:{
+					todos:[{
+						text:'1'
+					},{
+						text:'2'
+					},{
+						text:'3'
+					},{
+						text:'4'
+					},{
+						text:'5'
+					}]
+				}
+			})
+	</script>
+</html>

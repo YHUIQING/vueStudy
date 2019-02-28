@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>vue模板语法</title>
+	</head>
+	<body>
+		<div id="app">
+			<div>{{test + ' yhq'}}</div>
+			<div v-text = "test + ' yhq'"></div>
+			<div v-html = "test + ' yhq'"></div>
+		</div>
+	</body>
+	
+	<!-- 生产环境版本，优化了尺寸和速度 -->
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script>
+	//生命周期Vue实例在某一个时间点自动执行的函数
+	var vm = new Vue({
+		el:"#app",
+		data:{
+			test:'<h1>hello world</h1>'
+		}
+		
+	})
+	</script>
+</html>
